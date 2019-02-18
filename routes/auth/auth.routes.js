@@ -7,7 +7,10 @@ Imports
 
   // Add service
   const { sendApiSuccessResponse, sendApiErrorResponse } = require('../../services/server.response');
-  const { checkfields } = require('../../services/request.checker');
+  const { checkFields } = require('../../services/request.checker');
+
+  // Add controller
+  const { registerUser } = require('./auth.controller');
 
 //
 
@@ -24,33 +27,29 @@ Definition
       authRouter.get('/', (req, res) => {
           res.json('sdfhgjhkjlknl')
       })
-      authRouter.post('/', (req, res) => {
-        // Use service to send response
-        sendApiSuccessResponse(res, 'test msg', null)
-      })
 
-      /* 
-      Route AUTH register user
-      */
-     // TODO : register route
-      // authRouter.get('register', (req, res) => {
-      //   res.json('sdfhgjhkjlknl')
-      // })
-      // authRouter.post('register', (req, res) => {
-      //   // Check if body is present
-      //   if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
-      //   // Check mandatory fields
-      //   const { miss, extra, ok } = checkFields(['pseudo', 'firstName', 'lastName', 'email', 'password'], req.body);
-      //   // Check the result
-      //   if (!ok) {
-      //     // error
-      //     return sendFieldsError(res, 'Bad fields provided', miss, extra)
-      //   } else {
-      //     // success
-      //     return sendApiSuccessResponse(res, 'Provided fields are ok', null)
-      //   }
-      // })
-      //
+      // Route AUTH register user
+      authRouter.post('/register', (req, res) => {
+        // Check if body is present
+        if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
+
+        // Check mandatory fields
+        const { miss, extra, ok } = checkFields(['pseudo', 'email', 'password'], req.body);
+
+        // Check the result
+        if (!ok) { 
+          // Error
+          return sendApiErrorResponse(res, 'Bad fields provided', miss, extra) 
+        }
+
+        else{
+          // Success
+          // Use controller
+          registerUser(req.body)
+          .then(apiRes => sendApiSuccessResponse(res, 'User is registrated', apiRes))
+          .catch( apiErr => sendApiErrorResponse(res, "Error during user registration", apiErr))
+        }
+      })
 
     };
 

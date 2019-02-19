@@ -12,7 +12,6 @@ Definition
         pseudo: String,
         email: String,
         password: String,
-        cgu: Boolean,
     });
 //
 

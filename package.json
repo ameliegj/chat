@@ -20,10 +20,12 @@
   "dependencies": {
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.13",
     "nodemon": "^1.18.10",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "vue": "^2.6.6"
   }
 }

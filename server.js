@@ -1,11 +1,15 @@
 /*
 Imports and configuration
 */
+  require('dotenv').config();
   //=> Extern dependencies
   const express = require('express');
   const bodyParser = require('body-parser');
   const path = require('path');
   const ejs = require('ejs');
+
+  //=> Connexion BDD
+  const dbConnect = require('./services/mongodb.serv')
 
   //=> Express  
   const port = process.env.PORT || 8080;
@@ -34,8 +38,22 @@ Server initialisation
   //=> Server mainRouter
   appServer.use('/', mainRouter);
 
+  
+
   //=> Ready to listen
-    appServer.listen(port, () => console.log('App is running on port ' + port) );
+
+    // Connecter la BDD
+    dbConnect()
+    .then( db => {
+      // Start server
+      appServer.listen( port, () => {
+          console.log({
+              monngo: `BDD is connected ${db}!`,
+              server: `Server listening on port ${port}!`
+          });
+      });
+    })
+    .catch( err => console.log(`Error MongoDB ${err}`) );
   };
 
   //=> Launch server

@@ -2,7 +2,7 @@
 Imports 
 */
 const UserModel = require('../../models/user.model');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 //
 
 /* 
@@ -11,13 +11,16 @@ Methods
 // Register new 
 const registerUser = (bodyParams) => {
     return new Promise((resolve, reject) => {
-
+        
         // Check if user already exist
         UserModel.findOne({ email: bodyParams.email }, (error, user) => {          
-            if (error) { return reject(error) }
+            if (error) { 
+                return reject(error) 
+            }
             else if(user){ return reject('Email already used') }
 
             else {
+                
                 // Generate a hash of the password
                 bcrypt.hash(bodyParams.password, 10)
                 .then( hash => { 
@@ -34,7 +37,7 @@ const registerUser = (bodyParams) => {
                         
                     }, (error, user) => {
                         // Check DDB result
-                        return error ? return reject(error): resolve(user)
+                        return error ? reject(error): resolve(user)
                     });
                 })
                 // Catch error when hashing password

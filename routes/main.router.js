@@ -7,6 +7,15 @@ Imports
 //
 
 /* 
+Passport Strategy
+Passport est un module NPM qui permet de sécuriser les connexions utilisateur grâce à des stratégies spécifiques. Nous utilisons ici la startégie JWT (cf. setAuthentication)
+*/
+const passport = require('passport');
+const { setAuthentication } = require('../services/authentication');
+setAuthentication(passport);
+//
+
+/* 
 Define globale routers
 */
   const mainRouter = Router();
@@ -16,7 +25,7 @@ Define globale routers
 /*
 Define specific routers
 */
-  const frontRouter = new FrontRouterClass();
+  const frontRouter = new FrontRouterClass({ passport });
   const authRouter = new AuthRouterClass();
 //
 

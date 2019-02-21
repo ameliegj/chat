@@ -23,17 +23,17 @@ const registerUser = (bodyParams) => {
                 
                 // Generate a hash of the password
                 bcrypt.hash(bodyParams.password, 10)
+
                 .then( hash => { 
                     // Define user hashed password
                     const userPasswordHash = hash
 
                     // Save user
                     UserModel.create({
-                        firstName: bodyParams.firstName,
-                        lastName: bodyParams.lastName,
+                        pseudo: bodyParams.pseudo,
                         email: bodyParams.email,
                         password: userPasswordHash,
-                        cgu: true,
+                        color : bodyParams.color,
                         
                     }, (error, user) => {
                         // Check DDB result
@@ -48,10 +48,40 @@ const registerUser = (bodyParams) => {
 };
 //
 
+
+// login 
+const loginUser = (bodyParams, res) => {
+
+    return new Promise( (resolve, reject) => {
+        // Search user by email
+        UserModel.findOne( {email: bodyParams.email}, (error, user) =>{
+            if (error) { 
+                return reject(error) 
+            }
+            else if(!user) return reject('Unknow User') 
+            
+            else{
+                // Check password
+                const validPassword = bcrypt.compareSync(bodyParams.password, user.password);
+                if( !validPassword ) {
+                    reject('Password not valid')
+                }
+                else{
+                    // Set cookie
+                    res.cookie( 'chat', user.generateJwt() )
+                    return resolve(user);
+                };
+            };
+        });
+    });
+
+};
+
 /* 
 Export 
 */
 module.exports = {
     registerUser,
+    loginUser
 };
 //

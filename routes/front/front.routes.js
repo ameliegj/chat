@@ -2,8 +2,13 @@
 Imports 
 - The "mergeParams: true" enable to parse parameters true routers class
 */
-const express = require('express');
-const frontRouter = express.Router({ mergeParams: true });
+    const { Router } = require('express');
+    const frontRouter = Router({ mergeParams: true });
+
+
+    // Add controller
+    const { getOldMessages } = require('../../services/getOldMessages');
+
 //
 
 /* 
@@ -11,11 +16,48 @@ Definition
 */
 class FrontRouterClass {
 
-    constructor() {}
+    constructor( { passport } ) {
+        this.passport = passport;
+        
+    }
 
     routes(){
         // Get all paths from "/"
-        frontRouter.get( ['/*'], (req, res) => { res.render('index') });
+        frontRouter.get( ['/'], (req, res) => { 
+            return res.render('index', {
+                title: 'Welcome', 
+                data: 'Hello EJS', 
+                chat: [ {id:0, content: "hello"}, {id:1, content: "world"} ]
+            }) 
+        });
+
+        frontRouter.get( ['/register'], (req, res) => { 
+            return res.render('views/pages/register', {
+                title: 'Sign In', 
+            }) 
+        });
+
+        frontRouter.get( ['/login'], (req, res) => { 
+            return res.render('views/pages/login', {
+                title: 'Log In', 
+            }) 
+        });
+        
+        // frontRouter.get( ['/home'], this.passport.authenticate('jwt', { session: false }), (req, res) => { 
+        frontRouter.get( ['/home'], (req, res) => { 
+            return res.render('views/pages/home', {
+                title: 'Home', 
+            }) 
+        });
+
+        frontRouter.get( ['/chat'], (req, res) => { 
+            let oldMessages = getOldMessages()
+            // console.log('msg : ', oldMessages)
+            return res.render('views/pages/chat', {
+                title: 'Chat', 
+                messages: oldMessages,
+            }) 
+        });
     };
 
     init(){

@@ -1,0 +1,21 @@
+<%- include('../includes/header', {title: title}) %>
+
+<body>
+    <h1><%= title %></h1>
+
+    <form action="api/auth/register" method="post">
+            <label for="pseudo">Pseudo : </label><input id="pseudo" type="text" name="pseudo" placeholder="MyCoolPseudo" required minlength="3" maxlength="12"> <br/>
+            <label for="email">Email : </label><input id="email" type="email" name="email" placeholder="cool@email.com" required> <br/>
+            <label for="password">Mot de passe : </label><input id="password" type="password" name="password" placeholder="MyCoolPassword" required minlength="8"> <br/>
+            <label for="color">Couleur : </label><input id="color" type="color" name="color" required> <br/>
+
+
+
+            <br/>
+            <br/>
+            <input type="submit" value="Créer mon compte">
+    </form>
+    
+</body>
+    
+<%- include('../includes/footer') %>

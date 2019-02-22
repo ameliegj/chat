@@ -1,0 +1,200 @@
+* {
+    font-family: 'Roboto Mono', monospace;
+    color: #5000FF;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.ctn {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 0px 0;
+    font-size: 40px;
+    text-align: center;
+    /* margin: auto; */
+}
+
+/********************
+
+        INDEX
+
+********************/
+
+
+.index {
+    height: 80vh;
+    padding: 10vh 0;
+    /* display: flex;
+    flex-direction: column; */
+    justify-content: space-around;
+}
+
+a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 44px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.btn {
+    width: 180px;
+    text-align: center;
+  }
+
+  .button_type1 {
+    background-color: #5000FF;
+    color: #fff;
+    border: 2px solid #5000FF;
+  }
+  
+  .button_type2 {
+    border: 2px solid #5000FF;
+    transition: background-color 0.5s;
+  }
+  
+  .button_type2:hover {
+    background-color: rgba(80, 0, 255, 0.25);
+  }
+  
+
+/********************
+
+       LOGIN
+       REGISTER
+
+********************/
+
+.page {
+    justify-content: center;
+    align-items: center;
+}
+
+.ctn-window {
+    /* position: absolute; */
+    width: 325px;
+    border: 2px solid #5000FF;
+    /* top: 0; */
+}
+
+p.subtitle {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    padding: 4px  0;
+    background-color: #5000FF;
+    font-size: 22px;
+    color: #fff;
+}
+
+form {
+    width: 293px;
+    position: relative;
+    margin: 50px auto 0px auto;
+    left: 0;
+    right: 0;
+}
+
+label {
+    font-weight: 300;
+}
+
+input {
+    border: 2px solid #5000FF;
+    font-size: 16px;
+    padding: 10px;
+    width: 269px;
+    margin-bottom: 25px;
+}
+input::placeholder {
+    font-weight: 300;
+}
+
+.submit {
+    width: 100%;
+    background-color: #5000FF;
+    color: #fff;
+    border: 2px solid #5000FF;
+    margin-top: 30px;
+}
+
+/********************
+
+       CHAT
+
+********************/
+
+.chat-container {
+    margin: auto;
+    width: 325px;
+  }
+
+.discussion {
+    
+    padding: 8px 8px;
+    background-color: #5000FF;
+    margin: 2px 0 0 0;
+
+  }
+
+  ul {
+    overflow: scroll;
+    /* width: 309px; */
+    max-height: 40vh;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    background-color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    width: 288px;
+    margin-bottom: 4px;
+    text-align: right;
+    list-style: none;
+  }
+
+  #form {
+      display: flex;
+      flex-direction: row;
+  }
+
+  #form input {
+    margin: auto;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+  }
+
+  #form button {
+    color: #fff;
+    border: 0;
+    background-color: #5000FF;
+    font-size: 14px;
+    padding: 4px 6px;
+    cursor: pointer;
+  }
+  

@@ -40,7 +40,7 @@ Definition
           registerUser(req.body)
           .then(
             apiRes => sendApiSuccessResponse(res, 'User is registrated', apiRes),
-            // res.redirect('/home')
+            // res.redirect('/chat')
             console.log('test')
             )
           .catch( apiErr => sendApiErrorResponse(res, "Error during user registration", apiErr))
@@ -63,7 +63,7 @@ Definition
             loginUser(req.body, res)
             .then(
               apiRes => sendApiSuccessResponse(res, 'User is connected', apiRes),
-              // res.redirect('/home') 
+              // res.redirect('/chat') 
               )
             .catch( apiErr => sendApiErrorResponse(res, "Error during user connection", apiErr))
         }

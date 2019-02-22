@@ -1,19 +1,25 @@
 <%- include('../includes/header', {title: title}) %>
 
 <body>
+    
+
+<div class="ctn page">
     <h1><%= title %></h1>
 
-    <!-- //bind fonction ejs => vers le controleur : auth.services.js -->
-    <form action="api/auth/login" method="post">
-        <label for="email">Email : </label><input id="email" type="email" name="email" placeholder="cool@email.com" required> <br/>
-        <label for="password">Mot de passe : </label><input id="password" type="password" name="password" placeholder="MyCoolPassword" required minlength="8"> <br/>
+    <div class="ctn-window">
+        <p class="subtitle">/connexion</p>
+        <!-- //bind fonction ejs => vers le controleur : auth.services.js -->
+        <form action="api/auth/login" method="post">
+            <label for="email">Email : </label><input id="email" type="email" name="email" placeholder="cool@email.com" required>
+            <label for="password">Mot de passe : </label><input id="password" type="password" name="password" placeholder="MyCoolPassword" required minlength="8">
+            <input class="submit" type="submit" value="SE CONNECTER">
+        </form>     
+
+    </div>
 
 
+</div>
 
-        <br/>
-        <br/>
-        <input type="submit" value="Créer mon compte">
-</form>        
 </body>
     
 <%- include('../includes/footer') %>

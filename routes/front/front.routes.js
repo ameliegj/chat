@@ -43,13 +43,7 @@ class FrontRouterClass {
             }) 
         });
         
-        // frontRouter.get( ['/home'], this.passport.authenticate('jwt', { session: false }), (req, res) => { 
-        frontRouter.get( ['/home'], (req, res) => { 
-            return res.render('views/pages/home', {
-                title: 'Home', 
-            }) 
-        });
-
+        // frontRouter.get( ['/chat'], this.passport.authenticate('jwt', { session: false }), (req, res) => { 
         frontRouter.get( ['/chat'], (req, res) => { 
             let oldMessages = getOldMessages()
             // console.log('msg : ', oldMessages)

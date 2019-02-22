@@ -1,12 +1,22 @@
 <%- include('views/includes/header', {title: title}) %>
 
     <body>
-        <h1><%= title %></h1>
 
-        <a href="login"><button>Se connecter</button></a>
-        <br/>
-        <a href="register"><button>Créer un compte</button></a>   
+    <div class="ctn index">  
+        <h1>/almostSecuredChat.js</h1>
+
+        <h2><%= title %> !</h2>
+
+        <div class="button-container">
+
+            <a href="login" class="btn button_type1">Se connecter</a>
+            <a href="register" class="btn button_type2">Créer un compte</a>   
+            <a href="chat" class="btn button_type2">(chat)</a>   
         
+        </div>
+
+    </div>
+
     </body>
 
 <%- include('views/includes/footer') %>

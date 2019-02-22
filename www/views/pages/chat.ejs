@@ -15,7 +15,7 @@
                 <% }) %>
             </ul>
         </div>
-        <form action="" id="form">
+        <form action="api/chat/saveMsg" method="post" id="form">
             <input type="text" id="m" name ="m" autocomplete="off" /><button>Send</button>
         </form>
     </div>
@@ -31,19 +31,24 @@
     let socket = io();
     document.getElementById('form').addEventListener('submit', function(event){
         event.preventDefault();
-        socket.emit('chat message', form.elements["m"].value);
+        let msg = form.elements["m"].value
+        let chatMessage = {
+            pseudo : "unknown",
+            msg : msg
+        }
+        socket.emit('chat message', chatMessage);
 
         form.elements["m"].value = ''
         return false;
     })
 
 
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function(chatMessage){
 
         var node = document.createElement("LI");
-        var textnode = document.createTextNode(msg);
+        var textnode = document.createTextNode(chatMessage.msg);
         node.appendChild(textnode);
-        document.getElementById("messages").appendChild(node);  
+        document.getElementById("messages").appendChild(node);
     });
 
 

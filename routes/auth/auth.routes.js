@@ -28,7 +28,7 @@ Definition
         // Check if body is present
         if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
         // Check mandatory fields
-        const { miss, extra, ok } = checkFields(['pseudo', 'email', 'password', 'color'], req.body);
+        const { miss, extra, ok } = checkFields(['pseudo', 'email', 'password'], req.body);
         // Check the result
         if (!ok) { 
           // Error

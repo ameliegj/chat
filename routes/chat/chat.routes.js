@@ -25,6 +25,7 @@ Definition
       // Route chat save msh
       chatRouter.post('/saveMsg', (req, res) => {
         // Check if body is present
+        console.log('route api save')
         if (typeof req.body === 'undefined' || req.body === null) { sendBodyError(res, 'No body data provided') }
         // Check mandatory fields
         const { miss, extra, ok } = checkFields(['pseudo', 'msg'], req.body);
@@ -37,6 +38,8 @@ Definition
           // Success
           // Use controller
           //here the controller to save in the database
+console.log('req.body : ', req.body)
+
           saveMsg(req.body)
           .then(
             apiRes => sendApiSuccessResponse(res, 'Message saved ', apiRes))

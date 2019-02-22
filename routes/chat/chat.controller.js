@@ -9,7 +9,7 @@ Methods
 */
 // POST / save new messages
 const saveMsg = (bodyParams) => {
-    console.log('controller triggerred')
+    console.log('controller save triggerred')
     return new Promise((resolve, reject) => {       
         // Save msg
         MsgModel.create({

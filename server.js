@@ -23,6 +23,8 @@ Imports and configuration
   const { mainRouter } = require('./routes/main.router');
 
 
+
+
 /* 
 Socket
 */
@@ -44,7 +46,9 @@ Socket
       console.log(msg)
       socket.emit('chat message', msg);
       socket.broadcast.emit('chat message', msg);
-      //call here a service to save messages
+
+
+      //call here api routes to save messages
     });
   });
 
